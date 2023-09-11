@@ -17,36 +17,40 @@ function Banner({ original }: Props) {
 	}, [original]);
 
 	return (
-		<section className='flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12'>
-			{/* 이미지 Frame */}
-			<div className='absolute top-0 left-0 z-[1] h-[95vh] w-full'>
-				<Image
-					src={`${baseURL}${Movie?.backdrop_path}`}
-					alt={`${Movie?.title || Movie?.name}`}
-					fill
-					priority
-					className='object-cover'
-					quality={50}
-				/>
-			</div>
+		<section className='px-4 pb-24 lg:px-16 flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 overflow-hidden relative'>
+			{Movie && (
+				<>
+					{/* 이미지 Frame */}
+					<div className='absolute top-0 left-0 z-[1] h-[95vh] w-full'>
+						<Image
+							src={`${baseURL}${Movie.backdrop_path}`}
+							alt={`${Movie.title || Movie.name}`}
+							fill
+							priority
+							className='object-cover'
+							quality={70}
+						/>
+					</div>
 
-			{/* 이미지 정보 */}
-			<h1 className='relative z-[3] text-2xl font-bold drop-shadow md:text-4xl lg:text-7xl'>
-				{Movie?.title || Movie?.name}
-			</h1>
-			<p className='relative z-[3] text-xs max-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl'>
-				{Movie?.overview}
-			</p>
+					{/* 이미지 정보 */}
+					<h1 className='relative z-[3] text-2xl font-bold drop-shadow md:text-4xl lg:text-7xl'>
+						{Movie.title || Movie.name}
+					</h1>
+					<p className='relative z-[3] text-xs max-w-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl'>
+						{Movie.overview}
+					</p>
 
-			{/* 버튼 Set */}
-			<nav className='relative z-[3] flex space-x-3'>
-				<button className='btn-banner'>
-					<FaPlay /> Play
-				</button>
-				<button className='btn-banner'>
-					<FaInfoCircle /> More Info
-				</button>
-			</nav>
+					{/* 버튼 Set */}
+					<nav className='relative z-[3] flex space-x-3'>
+						<button className='btn-banner bg-white text-black'>
+							<FaPlay /> Play
+						</button>
+						<button className='btn-banner bg-[gray] text-black'>
+							<FaInfoCircle /> More Info
+						</button>
+					</nav>
+				</>
+			)}
 		</section>
 	);
 }

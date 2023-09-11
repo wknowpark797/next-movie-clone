@@ -17,11 +17,11 @@ function Banner({ original }: Props) {
 	}, [original]);
 
 	return (
-		<section className='px-4 pb-24 lg:px-16 flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 overflow-hidden relative'>
+		<section className='px-4 pb-24 pt-40  flex flex-col space-y-4 py-16 md:space-y-8 lg:space-y-12 lg:px-16 lg:h-[95vh] lg:justify-end lg:pb-40 overflow-hidden relative'>
 			{Movie && (
 				<>
 					{/* 이미지 Frame */}
-					<div className='absolute top-0 left-0 z-[1] h-[95vh] w-full'>
+					<div className='absolute top-0 left-0 z-[1] w-full h-full opacity-50'>
 						<Image
 							src={`${baseURL}${Movie.backdrop_path}`}
 							alt={`${Movie.title || Movie.name}`}
@@ -30,6 +30,7 @@ function Banner({ original }: Props) {
 							className='object-cover'
 							quality={70}
 						/>
+						<div className='absolute bottom-0 left-0 w-full h-full bg-gradient1'></div>
 					</div>
 
 					{/* 이미지 정보 */}
@@ -45,7 +46,7 @@ function Banner({ original }: Props) {
 						<button className='btn-banner bg-white text-black'>
 							<FaPlay /> Play
 						</button>
-						<button className='btn-banner bg-[gray] text-black'>
+						<button className='btn-banner bg-[gray] text-white'>
 							<FaInfoCircle /> More Info
 						</button>
 					</nav>

@@ -7,8 +7,12 @@ const config: Config = {
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 	theme: {
-		extend: {},
+		extend: {
+			backgroundImage: {
+				gradient1: 'linear-gradient(to-bottom, transparent, #141414)',
+			},
+		},
 	},
-	plugins: [],
+	plugins: [require('tailwind-scrollbar'), require('tailwind-scrollbar-hide')],
 };
 export default config;

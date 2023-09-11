@@ -21,7 +21,7 @@ interface Props {
 // Generic을 활용해서 Props 타입의 인터페이스를 직접 변수로 호출할 때 설정한다.
 const Home: NextPage<Props> = ({ original, top, sf, drama, fantasy, comedy, action }: Props) => {
 	return (
-		<div className='relative h-screen bg-gradient-to-b from-[#333] to-[#141414]'>
+		<div className='relative h-screen'>
 			<Head>
 				<title>NEXTFLIX</title>
 				<link rel='icon' href='/favicon.ico' />

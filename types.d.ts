@@ -6,22 +6,23 @@
 */
 
 export interface Movie {
-	adult?: boolean;
-	first_air_date?: string;
-	backdrop_path: string | null;
+	adult: boolean;
+	media_type: string;
+	backdrop_path: string;
 	genre_ids: number[];
 	id: number;
-	origin_contry?: string[];
 	original_language: string;
-	original_title?: string;
-	origin_name?: string;
 	overview: string;
 	popularity: number;
-	poster_path: string | null;
-	release_date: string;
-	title?: string;
-	name?: string;
+	poster_path: string;
 	video: boolean;
 	vote_average: number;
 	vote_count: number;
+	title?: string;
+	original_title?: string;
+	release_date?: string;
+	name?: string; // tv
+	origin_country?: string[]; // tv
+	origin_name?: string; // tv
+	first_air_date?: string; // tv
 }

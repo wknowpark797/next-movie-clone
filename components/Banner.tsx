@@ -21,7 +21,7 @@ function Banner({ original }: Props) {
 			{Movie && (
 				<>
 					{/* 이미지 Frame */}
-					<div className='absolute top-0 left-0 z-[1] w-full h-full opacity-50'>
+					<div className='absolute top-0 left-0 z-[1] w-full h-full'>
 						<Image
 							src={`${baseURL}${Movie.backdrop_path}`}
 							alt={`${Movie.title || Movie.name}`}

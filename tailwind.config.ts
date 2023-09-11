@@ -9,7 +9,7 @@ const config: Config = {
 	theme: {
 		extend: {
 			backgroundImage: {
-				gradient1: 'linear-gradient(to-bottom, transparent, #141414)',
+				gradient1: 'linear-gradient(to bottom, transparent, #141414)',
 			},
 		},
 	},

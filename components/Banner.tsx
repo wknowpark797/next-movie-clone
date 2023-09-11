@@ -16,13 +16,15 @@ function Banner({ original }: Props) {
 	}, [original]);
 
 	return (
-		<section>
-			<div>
+		<section className='flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12'>
+			<div className='absolute top-0 left-0 z-[1] h-[95vh] w-full'>
 				<Image
 					src={`${baseURL}${Movie?.backdrop_path}`}
 					alt={`${Movie?.title || Movie?.name}`}
 					fill
 					priority
+					className='object-cover'
+					quality={50}
 				/>
 			</div>
 		</section>

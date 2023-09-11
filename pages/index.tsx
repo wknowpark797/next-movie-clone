@@ -3,10 +3,20 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import requests from '@/utils/request';
 import Image from 'next/image';
+import { Movie } from '@/types';
 
-const Home: NextPage = (props) => {
-	console.log('props: ', props);
+interface Props {
+	top: Movie[];
+	sf: Movie[];
+	drama: Movie[];
+	fantasy: Movie[];
+	comedy: Movie[];
+	action: Movie[];
+}
 
+// Next에서 기본으로 제공하는 NextPage 타입에는 커스텀 Props타입이 설정되어 있지 않기 때문에
+// Generic을 활용해서 Props 타입의 인터페이스를 직접 변수로 호출할 때 설정한다.
+const Home: NextPage<Props> = ({ top, sf, drama, fantasy, comedy, action }: Props) => {
 	return (
 		<div className='relative h-screen bg-gradient-to-b from-[#333] to-[#141414]'>
 			<Head>

@@ -6,17 +6,21 @@
 */
 
 export interface Movie {
-	adult: boolean;
-	backdrop_path: string;
+	adult?: boolean;
+	first_air_date?: string;
+	backdrop_path: string | null;
 	genre_ids: number[];
 	id: number;
+	origin_contry?: string[];
 	original_language: string;
-	original_title: string;
+	original_title?: string;
+	origin_name?: string;
 	overview: string;
 	popularity: number;
-	poster_path: string;
+	poster_path: string | null;
 	release_date: string;
-	title: string;
+	title?: string;
+	name?: string;
 	video: boolean;
 	vote_average: number;
 	vote_count: number;

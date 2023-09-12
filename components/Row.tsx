@@ -32,6 +32,8 @@ function Row({ title, movies }: Props) {
 									className='object-cover'
 									quality={70}
 									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+									placeholder='blur'
+									blurDataURL={`${baseURL}w300${movie.backdrop_path}`}
 								/>
 							</li>
 						);

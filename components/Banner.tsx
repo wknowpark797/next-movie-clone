@@ -1,7 +1,7 @@
 import { Movie } from '@/types';
 import { baseURL } from '@/url';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaPlay, FaInfoCircle } from 'react-icons/fa';
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 }
 
 function Banner({ original }: Props) {
+	const loading = useRef<any>(null);
 	const [Movie, setMovie] = useState<Movie | null>(null);
 
 	useEffect(() => {
@@ -30,8 +31,15 @@ function Banner({ original }: Props) {
 							className='object-cover'
 							quality={70}
 							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+							onLoadingComplete={() => loading.current.remove()}
 						/>
 						<div className='absolute bottom-0 left-0 w-full h-full bg-gradient1'></div>
+
+						{/* Loading */}
+						<div
+							ref={loading}
+							className='w-[40px] h-[40px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] border-8 border-t-[transparent] border-solid border-[orange] rounded-[50%] z-30 animate-ani-rotation'
+						></div>
 					</div>
 
 					{/* 이미지 정보 */}

@@ -29,9 +29,9 @@ function Row({ title, movies }: Props) {
 									src={`${baseURL}w300${movie.backdrop_path}`}
 									alt={`${movie.title || movie.name}`}
 									fill
-									priority
 									className='object-cover'
 									quality={70}
+									sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 								/>
 							</li>
 						);

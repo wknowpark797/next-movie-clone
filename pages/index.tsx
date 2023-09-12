@@ -62,7 +62,7 @@ export const getServerSideProps = async () => {
 	return {
 		props: {
 			original: original.results,
-			top: top.results,
+			top_rated: top.results,
 			sf: sf.results,
 			drama: drama.results,
 			fantasy: fantasy.results,

@@ -9,7 +9,7 @@ interface Props {
 }
 
 function Banner({ original }: Props) {
-	const loading = useRef<any>(null);
+	const loading = useRef<HTMLDivElement | null>(null);
 	const [Movie, setMovie] = useState<Movie | null>(null);
 
 	useEffect(() => {
@@ -31,7 +31,7 @@ function Banner({ original }: Props) {
 							className='object-cover'
 							quality={70}
 							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-							onLoadingComplete={() => loading.current.remove()}
+							onLoadingComplete={() => loading.current?.remove()}
 						/>
 						<div className='absolute bottom-0 left-0 w-full h-full bg-gradient1'></div>
 

@@ -9,7 +9,7 @@ interface Props {
 }
 
 function Banner({ original }: Props) {
-	const loading = useRef<HTMLDivElement | null>(null);
+	const loading = useRef<HTMLDivElement>(null);
 	const [Movie, setMovie] = useState<Movie | null>(null);
 
 	useEffect(() => {

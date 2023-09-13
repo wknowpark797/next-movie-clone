@@ -60,7 +60,7 @@ function Login() {
 						type='email'
 						placeholder='Email'
 						className='input'
-						{...register('email', { required: true, minLength: 5, maxLength: 20 })}
+						{...register('email', { required: true, minLength: 7, maxLength: 20 })}
 					/>
 					{errors.email && <span>Please enter a valid Email.</span>}
 
@@ -70,9 +70,9 @@ function Login() {
 						className='input'
 						{...register('password', {
 							required: true,
-							minLength: 7,
+							minLength: 4,
 							maxLength: 20,
-							pattern: /[!@]/,
+							pattern: /[a-zA-Z]+[0-9]+[!@]+/,
 						})}
 					/>
 					{errors.password && <span>Please enter a valid Password.</span>}

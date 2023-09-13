@@ -2,7 +2,7 @@ import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyDQndNq6ZLI715XiXf5DJvm3g6iKVSyaMM',
+	apiKey: process.env.NEXT_PUBLIC_FIREBASE_KEY,
 	authDomain: 'dcode-community-11ff2.firebaseapp.com',
 	projectId: 'dcode-community-11ff2',
 	storageBucket: 'dcode-community-11ff2.appspot.com',

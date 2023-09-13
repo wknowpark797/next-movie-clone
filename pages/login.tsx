@@ -1,8 +1,22 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import logo from '@/public/img/logo.svg';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+interface Inputs {
+	email: string;
+	password: string;
+}
 
 function Login() {
+	const [Login, setLogin] = useState<boolean>(false);
+	const {
+		register, // 원하는 input요소에 전개연산자로 등록해서 값 관리
+		handleSubmit, // submit 이벤트 발생시 register에 등록된 input값들의 인증처리 함수
+		formState: { errors }, // 인증 실패시 커스텀 에러 메세지를 등록할 수 있는 객체
+	} = useForm<Inputs>();
+
 	return (
 		<main className='relative flex w-full h-screen flex-col bg-black md:items-center md:justify-center md:bg-transparent'>
 			<Head>

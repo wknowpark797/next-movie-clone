@@ -28,7 +28,7 @@ function Login() {
 				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 			/>
 
-			<form className='relative mt-24 space-y-8 rounded bg-black/70 py-10 px-6 md:mt-0 md:max-w-dm md:px-14'>
+			<form className='relative mt-24 space-y-8 rounded bg-black/70 py-10 px-6 md:mt-0 md:max-w-md md:px-14'>
 				<h1 className='text-4xl font-semibold'>Sign In</h1>
 
 				<div className='space-y-4'>

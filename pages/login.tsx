@@ -20,8 +20,11 @@ function Login() {
 	// handleSubmit 함수가 인증처리 완료시 동기적으로 실행될 콜백함수 등록
 	// 해당 콜백함수는 인증에 성공했을 때 호출: 인수로 전달되는 값은 관리되고 있는 form의 value값
 	const join: SubmitHandler<Inputs> = async ({ email, password }) => {
-		console.log('email: ', email);
-		console.log('password: ', password);
+		if (Login) {
+			// Sign In 버튼 클릭시 실행
+		} else {
+			// Sign Up 버튼 클릭시 실행
+		}
 	};
 
 	return (
@@ -78,11 +81,18 @@ function Login() {
 					{errors.password && <span>Please enter a valid Password.</span>}
 				</div>
 
-				<button className='w-full rounded bg-[#e40914] py-3 font-semibold'>Sign In</button>
+				<button
+					className='w-full rounded bg-[#e40914] py-3 font-semibold'
+					onClick={() => setLogin(true)}
+				>
+					Sign In
+				</button>
 
 				<div className='text-[gray]'>
 					New to NEXTFLIX?
-					<button className='text-white ml-4 hover:underline'>Sign Up Now</button>
+					<button className='text-white ml-4 hover:underline' onClick={() => setLogin(false)}>
+						Sign Up Now
+					</button>
 				</div>
 			</form>
 		</main>

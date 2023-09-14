@@ -1,19 +1,23 @@
 import { Movie } from '@/types';
 import { baseURL } from '@/url';
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { FaPlay, FaInfoCircle } from 'react-icons/fa';
+import useAuth from '@/hooks/useAuth';
 
 interface Props {
 	original: Movie;
 }
 
 function Banner({ original }: Props) {
+	const { InitialLoading } = useAuth();
 	const loading = useRef<HTMLDivElement>(null);
 
 	return (
 		<section className='px-4 pb-24 pt-40  flex flex-col space-y-4 py-16 md:space-y-8 lg:space-y-12 lg:px-16 lg:h-[95vh] lg:justify-end lg:pb-40 overflow-hidden relative'>
-			{
+			{InitialLoading.current ? (
+				<div className='w-[40px] h-[40px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] border-8 border-t-[transparent] border-solid border-[orange] rounded-[50%] z-30 animate-ani-rotation'></div>
+			) : (
 				<>
 					{/* 이미지 Frame */}
 					<div className='absolute top-0 left-0 z-[1] w-full h-full'>
@@ -54,7 +58,7 @@ function Banner({ original }: Props) {
 						</button>
 					</nav>
 				</>
-			}
+			)}
 		</section>
 	);
 }

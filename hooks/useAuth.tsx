@@ -43,10 +43,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	// 추후 firebase를 통해 user 정보값이 받아지면 false로 변경
 	// 해당 값을 state가 아닌 useRef로 담는 이유는 해당값이 변경되자마자 렌더링사이클에서 바로 변경점을 적용하기 위함
 	const InitialLoading = useRef<boolean>(true);
-	const [Loading, setLoading] = useState<boolean>(false);
 	const [UserInfo, setUserInfo] = useState<User | null>(null);
-	const [Errors, setErrors] = useState<string | null>(null);
-
 	const router = useRouter();
 
 	useEffect(() => {
@@ -55,12 +52,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 			if (user) {
 				// 전달받은 인증 정보가 있을 경우
 				setUserInfo(user);
-				setLoading(false);
 				router.push('/');
 			} else {
 				// 전달받은 인증 정보가 없을 경우
 				setUserInfo(null);
-				setLoading(true);
 				router.push('/login');
 			}
 
@@ -74,39 +69,31 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	// 회원가입 함수
 	const signUp = async (email: string, password: string) => {
-		setLoading(true);
 		await createUserWithEmailAndPassword(auth, email, password)
 			.then((userInfo) => {
 				setUserInfo(userInfo.user);
 				router.push('/');
-				setLoading(false);
 			})
-			.catch((err) => alert(err.message))
-			.finally(() => setLoading(false));
+			.catch((err) => alert(err.message));
 	};
 
 	// 로그인 함수
 	const signIn = async (email: string, password: string) => {
-		setLoading(true);
 		await signInWithEmailAndPassword(auth, email, password)
 			.then((userInfo) => {
 				setUserInfo(userInfo.user);
 				router.push('/');
-				setLoading(false);
 			})
-			.catch((err) => alert(err.message))
-			.finally(() => setLoading(false));
+			.catch((err) => alert(err.message));
 	};
 
 	// 로그아웃 함수
 	const logout = async () => {
-		setLoading(true);
 		signOut(auth)
 			.then(() => {
 				setUserInfo(null);
 			})
-			.catch((err) => alert(err.message))
-			.finally(() => setLoading(false));
+			.catch((err) => alert(err.message));
 	};
 
 	// useMemo를 이용하여 UserInfo, Loading값이 바뀔때만 각 함수 및 정보를 객체로 묶어서 메모이제이션 처리된 리턴값을 전역 컴포넌트에 전달

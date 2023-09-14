@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { FaPlay, FaInfoCircle } from 'react-icons/fa';
 import useAuth from '@/hooks/useAuth';
 import { useRecoilState } from 'recoil';
-import { modalState } from '@/recoil/globalAtom';
+import { modalState, movieState } from '@/recoil/globalAtom';
 
 interface Props {
 	original: Movie;
@@ -15,6 +15,7 @@ function Banner({ original }: Props) {
 	const { InitialLoading } = useAuth();
 	const loading = useRef<HTMLDivElement>(null);
 	const [ShowModal, setShowModal] = useRecoilState(modalState);
+	const [MovieInfo, setMovieInfo] = useRecoilState(movieState);
 
 	return (
 		<section className='px-4 pb-24 pt-40  flex flex-col space-y-4 py-16 h-[50vh] md:space-y-8 md:h-[60vh] lg:space-y-12 lg:px-16 lg:h-[95vh] lg:justify-end lg:pb-40 overflow-hidden relative'>
@@ -50,7 +51,13 @@ function Banner({ original }: Props) {
 
 					{/* 버튼 Set */}
 					<nav className='relative z-[3] flex space-x-3'>
-						<button className='btn-banner bg-white text-black' onClick={() => setShowModal(true)}>
+						<button
+							className='btn-banner bg-white text-black'
+							onClick={() => {
+								setShowModal(true);
+								setMovieInfo(original);
+							}}
+						>
 							<FaPlay /> Play
 						</button>
 						<button className='btn-banner bg-[gray] text-white'>

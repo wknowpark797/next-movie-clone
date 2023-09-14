@@ -3,6 +3,8 @@ import { baseURL } from '@/url';
 import Image from 'next/image';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { useRef } from 'react';
+import { useRecoilState } from 'recoil';
+import { modalState, movieState } from '@/recoil/globalAtom';
 
 interface Props {
 	movies: Movie[];
@@ -10,6 +12,8 @@ interface Props {
 
 function List({ movies }: Props) {
 	const listFrame = useRef<HTMLUListElement>(null);
+	const [ShowModal, setShowModal] = useRecoilState(modalState);
+	const [MovieInfo, setMovieInfo] = useRecoilState(movieState);
 
 	// 좌우버튼 클릭시 인수로 들어오는 방향에 따라 가로축으로 이동할 타겟 위치값을 구해서 scrollTo 이동처리
 	const handleClick = (direction: string) => {
@@ -38,6 +42,10 @@ function List({ movies }: Props) {
 								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 								placeholder='blur'
 								blurDataURL={`${baseURL}w300${movie.backdrop_path}`}
+								onClick={() => {
+									setShowModal(true);
+									setMovieInfo(movie);
+								}}
 							/>
 						</li>
 					);

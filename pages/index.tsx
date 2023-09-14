@@ -15,6 +15,7 @@ interface Props {
 	fantasy: Movie[];
 	comedy: Movie[];
 	action: Movie[];
+	random: Movie;
 }
 
 // Next에서 기본으로 제공하는 NextPage 타입에는 커스텀 Props타입이 설정되어 있지 않기 때문에
@@ -33,12 +34,14 @@ const Home: NextPage<Props> = (props: Props) => {
 			<Header />
 
 			<main className='relative lg:space-y-24'>
-				<Banner original={props.original} />
+				<Banner original={props.random} />
 
 				<section>
-					{Object.values(props).map((category, idx) => (
-						<Row key={idx} movies={category} title={Object.keys(props)[idx]} />
-					))}
+					{Object.values(props)
+						.filter((data) => data.length)
+						.map((category, idx) => (
+							<Row key={idx} movies={category} title={Object.keys(props)[idx]} />
+						))}
 				</section>
 			</main>
 		</div>
@@ -59,6 +62,8 @@ export const getServerSideProps = async () => {
 		fetch(requests.action).then((res) => res.json()),
 	]);
 
+	const randomOrigin = original.results[Math.floor(Math.random() * original.results.length)];
+
 	return {
 		props: {
 			original: original.results,
@@ -68,6 +73,7 @@ export const getServerSideProps = async () => {
 			fantasy: fantasy.results,
 			comedy: comedy.results,
 			action: action.results,
+			random: randomOrigin,
 		},
 	};
 };

@@ -16,7 +16,7 @@ function List({ movies }: Props) {
 		if (listFrame.current) {
 			const { scrollLeft, clientWidth } = listFrame.current;
 			const targetPos = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-			listFrame.current.scrollTo({left: targetPos, behavior: 'smooth'});
+			listFrame.current.scrollTo({ left: targetPos, behavior: 'smooth' });
 		}
 	};
 

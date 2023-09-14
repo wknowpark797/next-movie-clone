@@ -14,9 +14,9 @@ function Banner({ original }: Props) {
 	const loading = useRef<HTMLDivElement>(null);
 
 	return (
-		<section className='px-4 pb-24 pt-40  flex flex-col space-y-4 py-16 md:space-y-8 lg:space-y-12 lg:px-16 lg:h-[95vh] lg:justify-end lg:pb-40 overflow-hidden relative'>
+		<section className='px-4 pb-24 pt-40  flex flex-col space-y-4 py-16 h-[50vh] md:space-y-8 md:h-[60vh] lg:space-y-12 lg:px-16 lg:h-[95vh] lg:justify-end lg:pb-40 overflow-hidden relative'>
 			{InitialLoading.current ? (
-				<div className='w-[40px] h-[40px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] border-8 border-t-[transparent] border-solid border-[orange] rounded-[50%] z-30 animate-ani-rotation'></div>
+				<div className='loading'></div>
 			) : (
 				<>
 					{/* 이미지 Frame */}
@@ -34,10 +34,7 @@ function Banner({ original }: Props) {
 						<div className='absolute bottom-0 left-0 w-full h-full bg-gradient1'></div>
 
 						{/* Loading */}
-						<div
-							ref={loading}
-							className='w-[40px] h-[40px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] border-8 border-t-[transparent] border-solid border-[orange] rounded-[50%] z-30 animate-ani-rotation'
-						></div>
+						<div ref={loading} className='loading'></div>
 					</div>
 
 					{/* 이미지 정보 */}

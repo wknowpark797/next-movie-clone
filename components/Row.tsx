@@ -13,7 +13,7 @@ function Row({ title, movies }: Props) {
 		.join(' ');
 
 	return (
-		<article className='space-y-0.5 z-20 md:space-y-2 pl-4 md:pb-[30px] md:pl-12'>
+		<article className='space-y-0.5 z-20 md:space-y-2 pl-4 md:pb-[30px] lg:pl-12'>
 			<h2 className='w-56 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 hover:text-white md:text-2xl'>
 				{title}
 			</h2>

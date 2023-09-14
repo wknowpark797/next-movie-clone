@@ -3,6 +3,7 @@ import Image from 'next/image';
 import logo from '@/public/img/logo.svg';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import useAuth from '@/hooks/useAuth';
 
 interface Inputs {
 	email: string;
@@ -10,6 +11,7 @@ interface Inputs {
 }
 
 function Login() {
+	const { signIn, signUp } = useAuth();
 	const [Login, setLogin] = useState<boolean>(false);
 	const {
 		register, // 원하는 input요소에 전개연산자로 등록해서 값 관리
@@ -22,8 +24,12 @@ function Login() {
 	const join: SubmitHandler<Inputs> = async ({ email, password }) => {
 		if (Login) {
 			// Sign In 버튼 클릭시 실행
+			// 전역 context에서 로그인 함수를 호출하여 실행
+			await signIn(email, password);
 		} else {
 			// Sign Up 버튼 클릭시 실행
+			// 전역 context에서 회원가입 함수를 호출하여 실행
+			await signUp(email, password);
 		}
 	};
 
@@ -75,7 +81,6 @@ function Login() {
 							required: true,
 							minLength: 4,
 							maxLength: 20,
-							pattern: /[a-zA-Z]+[0-9]+[!@]+/,
 						})}
 					/>
 					{errors.password && <span>Please enter a valid Password.</span>}

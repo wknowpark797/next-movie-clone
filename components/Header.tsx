@@ -4,8 +4,10 @@ import profile from '@/public/img/profile.png';
 import { FaBell, FaSearch } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import useAuth from '@/hooks/useAuth';
 
 function Header() {
+	const { logout } = useAuth();
 	const [Scrolled, setScrolled] = useState(false);
 
 	useEffect(() => {
@@ -36,7 +38,15 @@ function Header() {
 				<p className='hidden lg:inline'>Kids</p>
 				<FaBell className='w-6' />
 				<Link href='/'>
-					<Image src={profile} alt='profile' width={32} height={32} className='rounded' />
+					{/* 전역 context에서 로그아웃 함수를 호출하도록 처리 */}
+					<Image
+						src={profile}
+						alt='profile'
+						width={32}
+						height={32}
+						className='rounded'
+						onClick={logout}
+					/>
 				</Link>
 			</div>
 		</header>

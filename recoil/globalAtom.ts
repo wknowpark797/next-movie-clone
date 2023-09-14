@@ -1,3 +1,4 @@
+// npm install recoil
 import { atom } from 'recoil'; // 전역 객체 생성
 import { Movie } from '@/types';
 

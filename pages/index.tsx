@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Movie } from '@/types';
 import Banner from '@/components/Banner';
 import Row from '@/components/Row';
+import useAuth from '@/hooks/useAuth';
 
 interface Props {
 	original: Movie[];
@@ -21,6 +22,7 @@ interface Props {
 // Next에서 기본으로 제공하는 NextPage 타입에는 커스텀 Props타입이 설정되어 있지 않기 때문에
 // Generic을 활용해서 Props 타입의 인터페이스를 직접 변수로 호출할 때 설정한다.
 const Home: NextPage<Props> = (props: Props) => {
+	const { InitialLoading } = useAuth();
 	// 1. 배열로 묶은 데이터를 useState로 담아서 재전달
 	// 2. 배열로 묶은 데이터를 useRef 참조객체에 담아서 재전달
 	// 3. 비구조화 할당이 아닌 객체를 통째로 받아서 전달해주고 활용하는 컴포넌트 내부에서 Object.key(), Object.value()로 내부에서 반복처리
@@ -34,7 +36,9 @@ const Home: NextPage<Props> = (props: Props) => {
 			<Header />
 
 			<main className='relative lg:space-y-24'>
-				<Banner original={props.random} />
+				{/* 실시간으로 변경되는 InitialLoading 값이 false일 경우 user 정보가 받아진 상태이기 때문에 이때 Banner 컴포넌트 렌더링 */}
+				{/* 초기에 Banner 렌더링 후 인증정보값을 받은 후 다시 렌더링이 되는것을 방지하기 위함 */}
+				{!InitialLoading.current && <Banner original={props.random} />}
 
 				<section>
 					{Object.values(props)

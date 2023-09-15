@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	// 추후 firebase를 통해 user 정보값이 받아지면 false로 변경
 	// 해당 값을 state가 아닌 useRef로 담는 이유는 해당값이 변경되자마자 렌더링사이클에서 바로 변경점을 적용하기 위함
 	const InitialLoading = useRef<boolean>(true);
+	const isMask = useRef<boolean>(false);
 	const [UserInfo, setUserInfo] = useState<User | null>(null);
 	const router = useRouter();
 
@@ -71,13 +72,21 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 			if (user) {
 				// 전달받은 인증 정보가 있을 경우
 				setUserInfo(user);
-				router.push('/');
+
+				// 인증정보가 바뀔 때 로딩화면 노출
+				isMask.current = true;
+				setTimeout(() => {
+					isMask.current = false;
+					router.push('/');
+				}, 200);
 			} else {
 				// 전달받은 인증 정보가 없을 경우
 				setUserInfo(null);
 
+				isMask.current = true;
 				// 메인 페이지에서 로그인 페이지로 넘어갈 때 0.3초동안 push가 중복실행되지 않도록 debouncing 적용
 				setTimeout(() => {
+					isMask.current = false;
 					router.push('/login');
 				}, 300);
 			}
@@ -125,7 +134,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	);
 	// 로그인 정보값이 있을 경우에만 화면 출력
 	// 실시간으로 적용되는 InitialLoading 값을 전역 context에 담는다.
-	return <AuthContext.Provider value={memoedContext}>{children}</AuthContext.Provider>;
+	return (
+		<AuthContext.Provider value={memoedContext}>
+			{!InitialLoading.current ? children : <div className='loading'></div>}
+
+			{isMask.current ? (
+				<div className='w-full h-screen fixed top-0 left-0 z-50 bg-black/90'>
+					<div className='loading'></div>
+				</div>
+			) : null}
+		</AuthContext.Provider>
+	);
 };
 
 // 전역 context에 접근하기 위한 커스텀 훅

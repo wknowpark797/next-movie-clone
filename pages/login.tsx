@@ -79,17 +79,13 @@ function Login() {
 						className='input'
 						{...register('password', {
 							required: true,
-							minLength: 4,
-							maxLength: 20,
+							pattern: /^(?=.*[a-zA-Z])(?=.*[!@#$%^&])(?=.*[0-9]).{5,20}$/,
 						})}
 					/>
 					{errors.password && <span>Please enter a valid Password.</span>}
 				</div>
 
-				<button
-					className='w-full rounded bg-[#e40914] py-3 font-semibold'
-					onClick={() => setLogin(true)}
-				>
+				<button className='w-full rounded bg-[#e40914] py-3 font-semibold' onClick={() => setLogin(true)}>
 					Sign In
 				</button>
 

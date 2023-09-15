@@ -66,10 +66,14 @@ function Login() {
 
 				<div className='space-y-4'>
 					<input
-						type='email'
+						type='text'
 						placeholder='Email'
 						className='input'
-						{...register('email', { required: true, minLength: 7, maxLength: 20 })}
+						{...register('email', {
+							required: true,
+							pattern: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*|.[a-zA-Z]{2,4}$/,
+							// 모든숫자, 대소문자 포함가능, 중간에 -, _ 허용 / 중간에 @ 무조건 포함 / 앞의 조건과 동일하게 처리 / 중간에 무조건 . 포함 / 문자값만 2개이상 이후 4개문자까지 허용
+						})}
 					/>
 					{errors.email && <span>Please enter a valid Email.</span>}
 
